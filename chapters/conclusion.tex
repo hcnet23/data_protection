@@ -1,0 +1,102 @@
+\chapter{Conclusions and Future Work} % Main chapter title
+\chaptermark{conclusion}
+\label{ch:conclusion} 
+
+\section{Overall Summary}
+\label{sec:overall_summary}
+% https://www.allianz-trade.com/en_GB/insights/grow-your-business/can-we-trust-machine-learning-for-decision-making.html
+
+This dissertation is written with two academic goals in mind: \Ni In-depth understanding of the adversarial robustness of deep NLP systems and \Nii providing a seamless protection of NLP systems at their various operational stages. Thus, we elucidated several security holes in existing works and their limitations for demonstrating the veritable threat of textual adversarial attacks (\cf \Cref{ch:analysis}). We also emphasized the brittleness of language representations of large-scale pre-trained language models and showed the effectiveness of adversarial training approaches. 
+
+In \Cref{ch:rmu}, we subsequently presented a novel black-box textual adversarial attack framework, RTA, and its optimization algorithm RMU. Particularly, RTA demonstrates controllability for a trade-off between the attack success rate and the semantics in a simple and predictable manner. Moreover, RTA shows high computational efficiency in terms of adversarial example generation. 
+
+Another crucial goal of this work is to devise a seamless defense framework for all stages of the system operations. In \Cref{ch:gradmask}, we proposed a simple adversarial example detection scheme, \gradmask, which verifies the intention of inputs. The proposed method shows significantly low FPR95 scores, which is a highly desirable property for NLP systems with high-security requirements. \gradmask\ does not require an additional module or a strong assumption about potential attacks which are more realistic in practice. Our results imply that it can serve as a useful tool for identifying adversarial attacks for protecting text classification systems.
+
+% Coherence
+%\Cref{ch:UNC} introduces a unified coherence model incorporating a local coherence model and a global coherence model to capture the sentence grammar (intentional structure), discourse relations, attention, and topic structures in a single framework. The unified coherence model shows state of the art results on the standard coherence assessment tasks. 
+
+% RSMI
+Finally, we proposed RSMI, a novel two-stage framework to tackle the issue of adversarial robustness of large-scale deep NLP systems (\cf \Cref{ch:rsmi}). We evaluated RSMI by applying it to large-scale pre-trained models on three benchmark datasets and obtain $2$ to $3$ times improvements against strong attacks in terms of robustness evaluation metrics over state-of-the-art defense methods. Our thorough experiments validate the effectiveness of RSMI as a practical approach to train adversarially robust NLP systems. 
+
+\section{Future Work}
+
+While existing research in the field of adversarial robustness has made significant achievements in understanding and defending against adversarial attacks on relatively small-scale language models, it is imperative to shift our focus towards large-scale models as the size of deep learning models continues to grow \citep{brown2020language,rae2021scaling,chowdhery2022palm,OPT,chatgpt}. Despite our thorough analysis on adversarial robustness and its scalability in \Cref{ch:analysis}, our analysis has not yet extended to such billion-scale models. As demonstrated from diverse domains, including our analysis, a simple scaling cannot guarantee the robust AI systems \citep{Zhang2023TransferableAA,li2022adversarial}. 
+
+Nevertheless, there exist some challenges for understanding such large-scale models. Firstly, a lot of existing textual attack algorithms operate in a gray-box setting where attackers have access to the model's prediction distribution (\ie soft-max distribution). However, such information is not always available, as seen in cases like ChatGPT \citep{chatgpt}. Secondly, the computational constraints of the existing attacks typically hinders in-depth analysis about large-scale models. For instance, TextFooler attack algorithm \citep{jin2019textfooler} requires 440 queries on average for misguiding a BERT-base model, which has only 110M parameters. Thus, it is crucial to develop a new attack algorithm with high computational efficiency working in a black-box setting. Consequently, devising a new attack scheme becomes an exciting future research direction. 
+
+Adversarial examples alone cannot provide a complete understanding of the robustness of deep NLP systems. To gain better insights, we should closely look at the fundamental learning mechanism of deep NLP systems, which are often overlooked despite their achievements. A notable example is the ability of deep NLP systems to generalize to test examples by learning from spurious correlations in training samples \citep{wang-etal-2022-identifying}. This behavior contradicts our expectation that these systems would implicitly leverage salient linguistic features in texts to achieve high-performance task results. Given the obscurity, a necessary future direction is to delve into the general robustness issues in deep NLP systems. 
+
+While adversarial examples might be the most striking phenomena to illustrate the vulnerability of deep learning systems, their brittleness is surprisingly more pervasive than we thought. For instance, deep learning systems often fail to generalize to testing distributions when they differ from training distributions \citep{hendrycks17baseline}. For instance, a sentiment classification system trained on sentiment classification samples annotated with positive and negative labeles may consistently classify samples with neutral sentiment as a negative sample with high confidence. 
+
+Detection of such samples would be the first step to addressing the issue. However, out-of-distribution (OOD) samples cannot be easily detected. It would be tempting to harness our adversarial example detection scheme proposed in \Cref{ch:gradmask} since both OOD samples and adversarial examples lead to abnormal behaviors of the systems. However, OOD samples require a special detection approach since they significantly differ from adversarial examples in various perspectives. In future work, OOD sample detection schemes will be explored.
+
+Lastly, the RSMI algorithm introduced in \Cref{ch:rsmi} could be used to prevent an improper disclosure of sensitive information contained in training data. Deep NLP systems often memorize a massive amount of training data that contain private information \citep{carlini21extracting}. This tendency often makes them vulnerable to a malicious data extraction attempt. Since RSMI's inference involves a data suppression (\ie gradient-guided salient token masking) and a randomized inference (\ie randomized smoothing), it would be worthwhile to explore the privacy issue in deep NLP systems.
+
+
+% The need for research on adversarial robustness is not confined to the industrial need for robust AI systems. It would serve as a probing tool for exploring fundamental mechanism behind deep learning models.  
+
+% the motivations behind this research and its potential benefits, we gain valuable insights into how it contributes to the development of secure, reliable, and ethical AI solutions. Moreover, we examine how advancements in adversarial robustness can strengthen the trustworthiness of AI models, enhance their generalization capabilities, and foster transparency and accountability.
+
+% This article delves into the imperative need for research on adversarial robustness, exploring its significance, impact, and the far-reaching implications for the future of deep learning systems. 
+
+% In the future work, I 
+
+% Research on adversarial robustness of deep learning models plays a crucial role in improving the robustness of them, but there are other important reasons. it can provides valuable insights about inner working .  
+% security, reliability, and generalization of deep learning systems. Here are some ways in which this research benefits us and contributes to a better understanding of deep learning:
+% Motivated by the pressing need to understand and enhance the adversarial robustness of large-scale language models, it would be worthwhile to explore 
+%  and dataset limitations
+% multidisciplinary literature from computer science, linguistics, and social sciences, 
+%  will be explored in future work, .
+% , but a bigger challenge is the attack effici
+% Therefore, it would be an intriguing and challenging research direction. 
+% To achieve this goal, I will uncover vulnerabilities, understand their underlying mechanisms, and develop innovative strategies to bolster their robustness.
+% Motivated by the pressing need to understand and enhance the adversarial robustness of large-scale language models, I am eager to contribute to this evolving field of research. 
+% Other than 
+% It would be an interesting research direction to 
+% I aim to contribute to the development of robust and reliable large-scale language models that can withstand adversarial challenges and ensure the integrity of natural language processing tasks. Through my research, I hope to make meaningful contributions towards strengthening the security and trustworthiness of these models, enabling their responsible deployment in diverse domains.
+% Recognizing the growing significance of these models in real-world applications and their vulnerability to adversarial attacks, I am determined to focus my efforts on investigating and developing effective defense mechanisms. 
+% The majority of prior work has primarily concentrated on smaller models due to computational constraints and dataset limitations. However, with the advent of large-scale pre-trained models like ChatGPT \citep{chatgpt} and their widespread deployment, it becomes crucial to investigate and enhance the adversarial robustness of these models. Large-scale language models are often exposed to real-world applications, making them more susceptible to sophisticated adversarial attacks. Therefore, by directing our efforts towards developing defense mechanisms tailored specifically to large-scale models, we can ensure their reliability and security in practical settings.
+
+
+
+% % These large-scale models have led to systems in 
+
+% % , creating and deploying each new system often requires a considerable amount of time and resources. 
+
+% % A wide range of established and anticipated risks are analysed in detail, drawing on multidisciplinary literature from computer science, linguistics, and social sciences
+
+
+% Accordingly, an in-depth understanding of potential risks is increasingly required. However, there are several challenges to investigate large deep learning models. 
+
+
+
+
+% Large language models (LLMs), or foundation models (Bommasani et al., 2021), have achieved significant performance on various natural language process (NLP) tasks. Given their superior in-context learning capability (Min et al., 2022), prompting foundation models has emerged as a widely adopted paradigm of NLP research and applications. ChatGPT is a recent chatbot service released by OpenAI (OpenAI, 2023), which is a variant of the Generative Pre-trained Transformers (GPT) family. Thanks to its friendly interface and great performance, ChatGPT has attracted over 100 million users in two months.
+
+% It is of imminent importance to evaluate the potential risks behind ChatGPT given its increasing worldwide popularity in diverse applications. While previous efforts have evaluated various aspects of ChatGPT in law (Choi et al., 2023), ethics (Shen et al., 2023), education (Khalil and Er, 2023), and reasoning (Bang et al., 2023), we focus on its robustness (Bengio et al., 2021), which, to our best knowledge, has not been thoroughly evaluated yet. Robustness refers to the ability to withstand disturbances or external factors that may cause it to malfunction or provide inaccurate results. It is
+
+
+
+
+% , from text classification and generation systems \citep{ouyang2022training,sanh2022multitask,wei2022chain,wei2022finetuned,openai_2022,thoppilan2022lamda} to planning in robotics \citep{huang2022language,li2022pretrained}, an in-depth understanding of potential risks is increasingly required \citep{deepmind21} \footnote{Work in this chapter is under review as Han Cheol Moon, Mathieu Ravaut, and Shafiq Joty. ``A Closer Look at Adversarial Robustness of NLP Systems''.}. To delve into the phenomena associated with PLMs brittleness, we examine their latent (language) representations via large-scale analysis of underlying language representations of PLMs and variations of the representations during fine-tuning to observe the impact of adversarial perturbations on the representations in \Cref{analysis:sec:fine_tuning}. Our study ranges from small PLMs of 12M parameters (ALBERT \citep{albert}) to large PLMs of 770M (T5-Large \citep{t5_model}) parameters, including PLMs fine-tuned with the recently introduced \emph{soft prompt tuning mechanism} \citep{lester-etal-2021-power}. 
+
+% As large pre-trained language models (PLMs) are ever-growing in size \citep{brown2020language,rae2021scaling,chowdhery2022palm,OPT,chatgpt} 
+% The unrelenting growth in data and computational requirements of state-of-the-art deep learning models, and explores
+
+% As the size of deep learning models continues to grow, the computational cost and data requirements for developing and training these models become immense \citep{brown2020language,rae2021scaling,chowdhery2022palm,OPT}. While many large-scale AI systems are helping solve all sorts of real-world problems, from chatbots \citep{chatgpt} to robotics \citep{huang2022language,li2022pretrained}, existing work on adversarial robustness is largely on relatively smaller scale.  
+
+
+
+
+
+% The field of adversarial robustness has made significant progress in understanding and defending against adversarial attacks on relatively small-scale language models. However, with the unprecedented growth in the size of deep learning models, it is crucial to shift our focus towards large-scale models [26, 113–116]. Despite our thorough analysis of adversarial robustness and scalability in Chapter 3, our analysis has not yet extended to billion-scale models. As demonstrated across diverse domains, including our own analysis, simple scaling alone cannot guarantee the robustness of AI systems [194, 195].
+
+% Nevertheless, there are challenges in understanding large-scale models. Firstly, many existing textual attack algorithms operate in a gray-box setting where attackers have access to the model's prediction distribution (i.e., softmax distribution). However, such information is not always available, as seen in cases like ChatGPT [26]. Secondly, the computational constraints of existing attacks often hinder in-depth analysis of large-scale models. For instance, the TextFooler attack algorithm [70] requires an average of 440 queries to misguide a BERT-base model with only 110 million parameters. Therefore, it is crucial to develop a new attack algorithm with high computational efficiency that works in a black-box setting. Consequently, devising a new attack scheme becomes an exciting future research direction.
+
+% Adversarial examples alone cannot provide a complete understanding of the robustness of deep NLP systems. To gain better insights, it is necessary to closely examine the fundamental learning mechanisms of these systems, which are often overlooked despite their achievements. A notable example is the ability of deep NLP systems to generalize to test examples by learning from spurious correlations in training samples [196]. This behavior contradicts our expectation that these systems would implicitly leverage salient linguistic features in texts to achieve high-performance task results. Therefore, delving into the general robustness issues in deep NLP systems becomes a crucial future direction.
+
+% While adversarial examples serve as striking demonstrations of the vulnerability of deep learning systems, their brittleness is more pervasive than previously thought. For instance, deep learning systems often fail to generalize to testing distributions that differ from the training distributions [178]. A sentiment classification system trained on samples annotated with positive and negative labels may consistently misclassify samples with neutral sentiment as negative with high confidence.
+
+% Detecting such samples would be the first step in addressing this issue. However, out-of-distribution (OOD) samples pose a challenge in easy detection. Although it may be tempting to apply the adversarial example detection scheme proposed in Chapter 5 to OOD samples, they require a specialized detection approach due to their significant differences from adversarial examples in various aspects. Future work will explore OOD sample detection schemes.
+
+% Lastly, the RSMI algorithm introduced in Chapter 6 could be utilized to prevent the improper disclosure of sensitive information contained in training data. Deep NLP systems often memorize a massive amount of training data that may include private information [197]. This tendency makes them vulnerable to malicious attempts at data extraction. Since RSMI's inference involves data suppression (i.e., gradient-guided salient token masking) and randomized inference (i.e., randomized smoothing), exploring the privacy issue in deep NLP systems would be worthwhile.
